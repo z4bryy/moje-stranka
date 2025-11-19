@@ -89,3 +89,76 @@
     });
   }
 </script>
+  <!--# Objektově orientované programování (OOP) v Pythonu
+
+# Třída (Class):
+# - Je to šablona/předpis pro vytváření objektů
+# - Definuje atributy (vlastnosti) a metody (funkce), které budou mít všechny objekty této třídy
+class Zvire:
+    # Konstruktor (__init__):
+    # - Speciální metoda, která se volá při vytvoření nového objektu
+    # - Inicializuje atributy objektu
+    def __init__(self, jmeno, vek):
+        # Atributy (vlastnosti objektu):
+        # - Jsou to proměnné, které patří objektu
+        # - Obsahují data/stav objektu
+        self.jmeno = jmeno  # self odkazuje na konkrétní instanci objektu
+        self.vek = vek
+
+    # Metoda (Method):
+    # - Funkce, která patří třídě
+    # - Definuje chování objektu
+    def vydej_zvuk(self):
+        return "Nějaký zvuk"
+
+    def info(self):
+        return f"{self.jmeno} je {self.vek} let staré."
+
+# Dědičnost (Inheritance):
+# - Umožňuje vytvořit novou třídu, která dědí vlastnosti a metody z jiné třídy
+# - Třída Pes dědí ze třídy Zvire (Pes je podtřída, Zvire je nadtřída)
+class Pes(Zvire):
+    def __init__(self, jmeno, vek, rasa):
+        # Voláme konstruktor nadřazené třídy
+        super().__init__(jmeno, vek)
+        self.rasa = rasa
+
+    # Polymorfismus (Polymorphism):
+    # - Možnost přepsat (override) metodu z nadřazené třídy
+    # - Stejná metoda má různé chování v různých třídách
+    def vydej_zvuk(self):
+        return "Haf! Haf!"
+
+class Kocka(Zvire):
+    def __init__(self, jmeno, vek, barva):
+        super().__init__(jmeno, vek)
+        self.barva = barva
+
+    def vydej_zvuk(self):
+        return "Mňau!"
+
+# Vytvoření instancí (objektů):
+# Instance je konkrétní objekt vytvořený podle šablony třídy
+pes1 = Pes("Rex", 5, "Německý ovčák")  # vytvoření instance třídy Pes
+kocka1 = Kocka("Micka", 3, "černá")    # vytvoření instance třídy Kocka
+
+# Použití objektů
+print("=== Demonstrace OOP konceptů ===")
+print("\n1. Přístup k atributům:")
+print(f"Jméno psa: {pes1.jmeno}")
+print(f"Věk kočky: {kocka1.vek}")
+
+print("\n2. Volání metod:")
+print(f"Pes dělá: {pes1.vydej_zvuk()}")
+print(f"Kočka dělá: {kocka1.vydej_zvuk()}")
+
+print("\n3. Info o zvířatech:")
+print(pes1.info())
+print(kocka1.info())
+
+# Demonstrace polymorfismu
+print("\n4. Demonstrace polymorfismu:")
+zvirata = [pes1, kocka1]
+for zvire in zvirata:
+    print(f"{zvire.jmeno} dělá: {zvire.vydej_zvuk()}")
+    -->
