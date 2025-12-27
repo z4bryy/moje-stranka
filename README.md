@@ -3,6 +3,6 @@ HTML,CSS,JavaScript
 
 ¦-------------------------------------------------¦
 ¦                                                 ¦
-¦  LINK: https://zabry0.github.io/moje-stranka/   ¦
+¦  LINK: https://z4bryy.github.io/moje-stranka    ¦
 ¦                                                 ¦
 ¦-------------------------------------------------¦
