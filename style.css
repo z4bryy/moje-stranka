@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #fff;
@@ -12,6 +16,18 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* ===== Animace ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===== Hlavička a navigace ===== */
@@ -73,11 +89,122 @@ nav ul li a.active {
   transition: color 0.3s ease;
 }
 
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.language-selector {
+  background: none;
+  border: 1px solid #ccc;
+  color: #222;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.language-selector:focus {
+  outline: none;
+  border-color: #0d6efd;
+}
+
 /* ===== Hlavní obsah ===== */
 main {
   max-width: 900px;
   margin: 2rem auto 4rem auto;
   flex-grow: 1;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.about {
+  margin-bottom: 3rem;
+}
+
+.interests {
+  margin-bottom: 3rem;
+}
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.interest-card {
+  background-color: #f0f0f0;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.interest-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.interest-card i {
+  font-size: 3rem;
+  color: #0d6efd;
+  margin-bottom: 1rem;
+}
+
+.interest-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #0d6efd;
+}
+
+.interest-card p {
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #0d6efd;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0848c2;
 }
 
 h2 {
@@ -189,9 +316,12 @@ footer {
   padding: 1rem 0;
   text-align: center;
   font-size: 0.9rem;
-  color: #666;
   margin-top: auto;
   user-select: none;
+}
+
+footer span {
+  color: #666;
 }
 
 /* ===== Tmavý režim ===== */
@@ -221,6 +351,69 @@ body.dark-mode nav ul li a.active {
 
 body.dark-mode #dark-mode-toggle {
   color: #e0e0e0;
+}
+
+body.dark-mode .hamburger {
+  color: #e0e0e0;
+}
+
+body.dark-mode .language-selector {
+  background: #333;
+  border-color: #555;
+  color: #e0e0e0;
+}
+
+/* ===== Thank You Page ===== */
+.thank-you-hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.thank-you-icon {
+  font-size: 4rem;
+  color: #0d6efd;
+  margin-bottom: 2rem;
+}
+
+.thank-you-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #0d6efd;
+}
+
+.thank-you-hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.thank-you-hero .btn {
+  background-color: #0d6efd;
+  color: white;
+  padding: 0.75rem 2rem;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.thank-you-hero .btn:hover {
+  background-color: #0848c2;
+}
+
+body.dark-mode .thank-you-hero p {
+  color: #ccc;
+}
+
+body.dark-mode footer span {
+  color: #888;
+}
+
+body.dark-mode footer {
+  background-color: #000;
+  border-top-color: #333;
 }
 
 body.dark-mode .card {
@@ -268,14 +461,49 @@ body.dark-mode .contact-info {
   color: #ccc;
 }
 
-body.dark-mode .contact-info a {
+body.dark-mode .gallery-grid img {
+  box-shadow: 0 6px 20px rgba(255,255,255,0.1);
+}
+
+body.dark-mode .gallery-grid img:hover {
+  box-shadow: 0 12px 30px rgba(255,255,255,0.2);
+}
+
+body.dark-mode .hero {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+body.dark-mode .interest-card {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+}
+
+body.dark-mode .interest-card:hover {
+  box-shadow: 0 8px 25px rgba(255,255,255,0.15);
+}
+
+body.dark-mode .interest-card i {
   color: #66aaff;
 }
 
-body.dark-mode footer {
-  background-color: #1f1f1f;
-  border-top-color: #444;
+body.dark-mode .interest-card h3 {
+  color: #66aaff;
+}
+
+body.dark-mode .interest-card p {
   color: #ccc;
+}
+
+body.dark-mode .btn {
+  background-color: #3399ff;
+}
+
+body.dark-mode #back-to-top {
+  background-color: #3399ff;
+}
+
+body.dark-mode #back-to-top:hover {
+  background-color: #1a73e8;
 }
 
 /* ===== Pozadí animace ===== */
@@ -291,15 +519,17 @@ body.dark-mode footer {
   background-color: #ffffff; /* výchozí světlé pozadí */
 }
 
-body.dark-mode #background-animation {
-  background-color: #121212; /* tmavé pozadí */
+body.dark-mode .circle {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .circle {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.5;
-  background: rgb(32, 91, 255);
+  background: hsl(200, 70%, 60%);
+  filter: blur(1px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  will-change: transform, opacity;
 }
 
 /* ===== Notifikace ===== */
@@ -347,61 +577,136 @@ body.dark-mode #background-animation {
 /* ===== Galerie ===== */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  max-width: 900px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .gallery-grid img {
   width: 100%;
-  height: 250px;
+  height: 220px;
   object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
 }
 
 .gallery-grid img:hover {
-  transform: scale(1.03);
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+/* ===== Lightbox ===== */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
 }
 
 /* ===== Mobilní optimalizace ===== */
 @media (max-width: 600px) {
   nav {
-    flex-direction: column;
-    gap: 0.7rem;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: 0 1rem;
   }
 
-  nav ul {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
     flex-direction: column;
-    width: 100%;
-    gap: 0.5rem;
+    padding: 1rem 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 99;
   }
 
-  nav ul li {
-    width: 100%;
+  nav.nav-open .nav-links {
+    display: flex;
   }
 
-  nav ul li a {
+  body.dark-mode .nav-links {
+    background-color: #1f1f1f;
+  }
+
+  .hamburger {
     display: block;
-    width: 100%;
-    padding: 0.5rem 1rem;
   }
 
   #dark-mode-toggle {
-    align-self: flex-end;
+    margin-left: 0.5rem;
   }
 
-  h2 {
-    font-size: 1.8rem;
+  .hero {
+    padding: 2rem 1rem;
   }
 
-  main {
-    margin: 1rem auto 2rem auto;
-    padding: 0 0.5rem;
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .interest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .interest-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .thank-you-hero {
+    padding: 2rem 1rem;
+  }
+
+  .thank-you-hero h1 {
+    font-size: 2rem;
+  }
+
+  .thank-you-hero p {
+    font-size: 1rem;
+  }
+
+  .thank-you-icon {
+    font-size: 3rem;
   }
 
   .card,
@@ -412,10 +717,12 @@ body.dark-mode #background-animation {
 
   .gallery-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 0.5rem;
   }
 
   .gallery-grid img {
-    height: auto;
+    height: 200px;
   }
 
   footer {
@@ -427,4 +734,32 @@ body.dark-mode #background-animation {
 .highlight-link{
   color: white;
   text-decoration: none;
+}
+
+/* ===== Back to top button ===== */
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 100;
+}
+
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#back-to-top:hover {
+  background-color: #0848c2;
 }

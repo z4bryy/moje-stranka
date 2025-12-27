@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>O mně | Ondřej Zábrodský</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <!-- Přidáme anime.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
@@ -45,55 +46,196 @@
     <nav class="nav-container">
       <h1 class="logo">Ondřej Zábrodský</h1>
       <ul class="nav-links">
-        <li><a href="index.html" class="active">O mně</a></li>
-        <li><a href="zaliby.html">Záliby</a></li>
-        <li><a href="galerie.html">Fotogalerie</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="index.html" class="active" data-key="nav-about">O mně</a></li>
+        <li><a href="zaliby.html" data-key="nav-interests">Záliby</a></li>
+        <li><a href="galerie.html" data-key="nav-gallery">Fotogalerie</a></li>
       </ul>
       <button id="dark-mode-toggle" aria-label="Přepnout tmavý režim" title="Přepnout tmavý režim" class="dark-mode-btn">🌙</button>
+      <select id="language-selector" class="language-selector">
+        <option value="cs">CZ</option>
+        <option value="en">EN</option>
+      </select>
+      <button class="hamburger" aria-label="Menu" title="Menu">☰</button>
     </nav>
   </header>
 
   <main class="main-content">
-    <h2>O mně</h2>
-    <article class="card">
-      <p>Ahoj! Jmenuji se <strong>Ondřej Zábrodský</strong> a jsem nadšenec do tří věcí: <strong>aut</strong>, <strong>fotografování</strong> a <strong>boxu</strong>.</p>
-      <p>Auta jsou mojí vášní už od dětství – baví mě na nich vše od zvuku až po aerodynamiku.</p>
-      <p>Rád zachycuji svět skrz objektiv fotoaparátu a box mi pomáhá držet se v kondici a učit se disciplíně.</p>
-      <p>Na tomto webu najdeš informace o mých zálibách, fotkách i možnost, jak mě kontaktovat.</p>
-    </article>
+    <section class="hero">
+      <h1 data-key="hero-name">Ondřej Zábrodský</h1>
+      <p data-key="hero-subtitle">Nadšenec do aut, fotografování a boxu</p>
+    </section>
+
+    <section class="about">
+      <h2 data-key="about-title">O mně</h2>
+      <article class="card">
+        <p data-key="about-text-1">Ahoj! Jmenuji se <strong>Ondřej Zábrodský</strong> a jsem nadšenec do tří věcí: <strong>aut</strong>, <strong>fotografování</strong> a <strong>boxu</strong>.</p>
+        <p data-key="about-text-2">Auta jsou mojí vášní už od dětství – baví mě na nich vše od zvuku až po aerodynamiku.</p>
+        <p data-key="about-text-3">Rád zachycuji svět skrz objektiv fotoaparátu a box mi pomáhá držet se v kondici a učit se disciplíně.</p>
+        <p data-key="about-text-4">Na tomto webu najdeš informace o mých zálibách, fotkách i možnost, jak mě kontaktovat.</p>
+      </article>
+    </section>
+
+    <section class="interests">
+      <h2 data-key="interests-title">Záliby</h2>
+      <div class="interest-grid">
+        <div class="interest-card">
+          <i class="fas fa-car"></i>
+          <h3 data-key="interest-cars-title">Auta</h3>
+          <p data-key="interest-cars-desc">Moje vášeň pro automobily od dětství. Zvuk motoru, design, rychlost – vše mě fascinuje.</p>
+          <a href="zaliba-auta.html" class="btn" data-key="learn-more">Zjistit více</a>
+        </div>
+        <div class="interest-card">
+          <i class="fas fa-camera"></i>
+          <h3 data-key="interest-photo-title">Fotografování</h3>
+          <p data-key="interest-photo-desc">Zachycuji krásu světa skrz objektiv. Od krajin po portréty, vždy hledám ten pravý moment.</p>
+          <a href="zaliba-fotografovani.html" class="btn" data-key="learn-more">Zjistit více</a>
+        </div>
+        <div class="interest-card">
+          <i class="fas fa-fist-raised"></i>
+          <h3 data-key="interest-boxing-title">Box</h3>
+          <p data-key="interest-boxing-desc">Box mi pomáhá udržovat kondici a disciplínu. Je to nejen sport, ale i životní filozofie.</p>
+          <a href="zaliba-box.html" class="btn" data-key="learn-more">Zjistit více</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    &copy; 2025 Ondřej Zábrodský. Všechna práva vyhrazena.
+    &copy; 2025 <span data-key="footer-name">Ondřej Zábrodský</span>
   </footer>
+
+  <button id="back-to-top" title="Zpět nahoru">↑</button>
 
   <script src="dark-mode-toggle.js"></script>
 <script>
     const bg = document.getElementById("background-animation");
 
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 20; i++) {
       const circle = document.createElement("div");
       circle.classList.add("circle");
-      circle.style.width = circle.style.height = `${Math.random() * 60 + 20}px`;
+      circle.style.width = circle.style.height = `${Math.random() * 80 + 30}px`;
       circle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
       circle.style.top = `${Math.random() * 100}%`;
       circle.style.left = `${Math.random() * 100}%`;
+      circle.style.opacity = Math.random() * 0.5 + 0.2;
 
       bg.appendChild(circle);
 
       anime({
         targets: circle,
+        translateX: [
+          { value: Math.random() * 200 - 100, duration: 3000 + Math.random() * 2000 },
+          { value: Math.random() * 200 - 100, duration: 3000 + Math.random() * 2000 }
+        ],
         translateY: [
-          { value: -100, duration: 2000 },
-          { value: 0, duration: 2000 }
+          { value: -150, duration: 4000 + Math.random() * 2000 },
+          { value: 150, duration: 4000 + Math.random() * 2000 }
+        ],
+        rotate: {
+          value: Math.random() * 360,
+          duration: 5000 + Math.random() * 3000,
+          easing: 'linear'
+        },
+        opacity: [
+          { value: 0.1, duration: 2000 },
+          { value: 0.5, duration: 2000 },
+          { value: 0.1, duration: 2000 }
         ],
         direction: 'alternate',
         loop: true,
         easing: 'easeInOutSine',
-        delay: Math.random() * 1000
+        delay: Math.random() * 2000
       });
     }
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav-container');
+
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('nav-open');
+    });
+
+    // Language translations
+    const translations = {
+      cs: {
+        "nav-about": "O mně",
+        "nav-interests": "Záliby",
+        "nav-gallery": "Fotogalerie",
+        "hero-name": "Ondřej Zábrodský",
+        "hero-subtitle": "Nadšenec do aut, fotografování a boxu",
+        "about-title": "O mně",
+        "about-text-1": "Ahoj! Jmenuji se <strong>Ondřej Zábrodský</strong> a jsem nadšenec do tří věcí: <strong>aut</strong>, <strong>fotografování</strong> a <strong>boxu</strong>.",
+        "about-text-2": "Auta jsou mojí vášní už od dětství – baví mě na nich vše od zvuku až po aerodynamiku.",
+        "about-text-3": "Rád zachycuji svět skrz objektiv fotoaparátu a box mi pomáhá držet se v kondici a učit se disciplíně.",
+        "about-text-4": "Na tomto webu najdeš informace o mých zálibách, fotkách i možnost, jak mě kontaktovat.",
+        "interests-title": "Záliby",
+        "interest-cars-title": "Auta",
+        "interest-cars-desc": "Moje vášeň pro automobily od dětství. Zvuk motoru, design, rychlost – vše mě fascinuje.",
+        "interest-photo-title": "Fotografování",
+        "interest-photo-desc": "Zachycuji krásu světa skrz objektiv. Od krajin po portréty, vždy hledám ten pravý moment.",
+        "interest-boxing-title": "Box",
+        "interest-boxing-desc": "Box mi pomáhá udržovat kondici a disciplínu. Je to nejen sport, ale i životní filozofie.",
+        "learn-more": "Zjistit více",
+        "footer-name": "Ondřej Zábrodský"
+      },
+      en: {
+        "nav-about": "About Me",
+        "nav-interests": "Interests",
+        "nav-gallery": "Photo Gallery",
+        "hero-name": "Ondřej Zábrodský",
+        "hero-subtitle": "Enthusiast of cars, photography, and boxing",
+        "about-title": "About Me",
+        "about-text-1": "Hi! My name is <strong>Ondřej Zábrodský</strong> and I'm passionate about three things: <strong>cars</strong>, <strong>photography</strong>, and <strong>boxing</strong>.",
+        "about-text-2": "Cars have been my passion since childhood – I love everything from the engine sound to aerodynamics.",
+        "about-text-3": "I enjoy capturing the world through my camera lens, and boxing helps me stay fit and learn discipline.",
+        "about-text-4": "On this website, you'll find information about my interests, photos, and how to contact me.",
+        "interests-title": "Interests",
+        "interest-cars-title": "Cars",
+        "interest-cars-desc": "My passion for cars since childhood. Engine sound, design, speed – everything fascinates me.",
+        "interest-photo-title": "Photography",
+        "interest-photo-desc": "I capture the beauty of the world through the lens. From landscapes to portraits, I'm always looking for the perfect moment.",
+        "interest-boxing-title": "Boxing",
+        "interest-boxing-desc": "Boxing helps me maintain fitness and discipline. It's not just a sport, but a life philosophy.",
+        "learn-more": "Learn More",
+        "footer-name": "Ondřej Zábrodský"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-key]').forEach(element => {
+        const key = element.getAttribute('data-key');
+        if (translations[lang] && translations[lang][key]) {
+          element.innerHTML = translations[lang][key];
+        }
+      });
+      localStorage.setItem('selectedLanguage', lang);
+    }
+
+    // Language selector
+    const languageSelector = document.getElementById('language-selector');
+    languageSelector.addEventListener('change', (e) => {
+      setLanguage(e.target.value);
+    });
+
+    // Load saved language or default to Czech
+    const savedLang = localStorage.getItem('selectedLanguage') || 'cs';
+    languageSelector.value = savedLang;
+    setLanguage(savedLang);
   </script>
 </body>
 </html>

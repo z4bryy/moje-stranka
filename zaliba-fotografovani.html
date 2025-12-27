@@ -12,12 +12,16 @@
     <nav class="nav-container">
       <h1 class="logo">Ondřej Zábrodský</h1>
       <ul class="nav-links">
-        <li><a href="index.html">O mně</a></li>
-        <li><a href="zaliby.html" class="active">Záliby</a></li>
-        <li><a href="galerie.html">Fotogalerie</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="index.html" data-key="nav-about">O mně</a></li>
+        <li><a href="zaliby.html" class="active" data-key="nav-interests">Záliby</a></li>
+        <li><a href="galerie.html" data-key="nav-gallery">Fotogalerie</a></li>
       </ul>
       <button id="dark-mode-toggle" aria-label="Přepnout tmavý režim" title="Přepnout tmavý režim" class="dark-mode-btn">🌙</button>
+      <select id="language-selector" class="language-selector">
+        <option value="cs">CZ</option>
+        <option value="en">EN</option>
+      </select>
+      <button class="hamburger" aria-label="Menu" title="Menu">☰</button>
     </nav>
   </header>
 
@@ -35,5 +39,49 @@
   </footer>
 
   <script src="dark-mode-toggle.js"></script>
+  <script>
+    // Hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav-container');
+
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('nav-open');
+    });
+
+    // Language translations
+    const translations = {
+      cs: {
+        "nav-about": "O mně",
+        "nav-interests": "Záliby",
+        "nav-gallery": "Fotogalerie"
+      },
+      en: {
+        "nav-about": "About Me",
+        "nav-interests": "Interests",
+        "nav-gallery": "Photo Gallery"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-key]').forEach(element => {
+        const key = element.getAttribute('data-key');
+        if (translations[lang] && translations[lang][key]) {
+          element.innerHTML = translations[lang][key];
+        }
+      });
+      localStorage.setItem('selectedLanguage', lang);
+    }
+
+    // Language selector
+    const languageSelector = document.getElementById('language-selector');
+    languageSelector.addEventListener('change', (e) => {
+      setLanguage(e.target.value);
+    });
+
+    // Load saved language or default to Czech
+    const savedLang = localStorage.getItem('selectedLanguage') || 'cs';
+    languageSelector.value = savedLang;
+    setLanguage(savedLang);
+  </script>
 </body>
 </html>
